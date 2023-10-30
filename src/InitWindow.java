@@ -7,15 +7,16 @@ import java.awt.*;
 public class InitWindow extends JFrame {
     public BaseButton ok;
     public BaseButton cancel;
-//    ArrayList<JTextField> names;
+    private Gomoku g;
 
-    public InitWindow(Gomoku g) {
+    public InitWindow() {
         super("Kérem adja meg a neveket");
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
         setLocationRelativeTo(null);
         setUndecorated(true);
+        g = Gomoku.getInstance();
 
         //region P1
         JLabel p1l = new JLabel("Játékos 1:");

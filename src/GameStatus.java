@@ -1,0 +1,3 @@
+public enum GameStatus {
+    PLAYER1, PLAYER2, DRAW, PLAYER1WIN, PLAYER2WIN
+}

@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class MainWindow extends JFrame {
     Gomoku game;
+
     public MainWindow() {
         super("AMOBA");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -26,35 +27,34 @@ public class MainWindow extends JFrame {
         add(load, BorderLayout.WEST);
         add(exit, BorderLayout.EAST);
         setUndecorated(true);
-        game = new Gomoku();
+        game = Gomoku.getInstance();
     }
 
     public void newGame() {
         setVisible(false);
-        InitWindow initW = new InitWindow(game);
+        InitWindow initW = new InitWindow();
         initW.setVisible(true);
         Gomoku backup = game.clone();
         initW.ok.addActionListener(e -> {
             //TODO limit
-            if(game.player1.equals(game.player2)) {
+            if (game.player1.equals(game.player2)) {
                 JOptionPane.showMessageDialog(null, "A játékosok neve nem egyezhet meg!");
                 return;
             }
-            if(game.rows < 0 || game.rows > 10){
+            if (game.rows < 0 || game.rows > 10) {
                 JOptionPane.showMessageDialog(null, "A sorok száma 1 és 10 között kell legyen!");
                 return;
             }
-            if(game.cols < 0 || game.cols > 10){
+            if (game.cols < 0 || game.cols > 10) {
                 JOptionPane.showMessageDialog(null, "Az oszlopok száma 1 és 10 között kell legyen!");
                 return;
             }
-            if(game.win < 3 || game.win > 5){
+            if (game.win < 3 || game.win > 5 || game.win > game.rows || game.win > game.cols) {
                 JOptionPane.showMessageDialog(null, "A győzelemhez szükséges mezők száma 3 és 5 között kell legyen!");
                 return;
             }
             initW.setVisible(false);
             start();
-            setVisible(true);
         });
         initW.cancel.addActionListener(e -> {
             game = backup;
@@ -67,7 +67,9 @@ public class MainWindow extends JFrame {
         //TODO
         System.out.println("LOAD");
     }
+
     public void start() {
-        System.out.println("STRT" + game);
+        GameWindow gameWindow = new GameWindow();
+        gameWindow.setVisible(true);
     }
 }
