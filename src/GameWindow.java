@@ -2,7 +2,7 @@ import design.BaseButton;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 
 public class GameWindow extends JFrame {
     JPanel up;
@@ -107,6 +107,7 @@ public class GameWindow extends JFrame {
     }
 
     private void step(ActionEvent e, int i, int j) {
+        if (game.isEnded()) return;
         game.step(i, j);
         JButton btn = (JButton) e.getSource();
         btn.setText("A");
@@ -114,11 +115,14 @@ public class GameWindow extends JFrame {
         genCenter();
         up.removeAll();
         genTop();
+        if (game.isEnded()) {
+            JOptionPane.showMessageDialog(null, "A játéknak vége! Kattints az OK-ra a tábla megtekintése után!");
+            dispose();
+        }
     }
 
     private void save() {
-        //TODO
-        System.out.println("Mentés");
+        game.save();
     }
 
     private JLabel addLabel(String text) {

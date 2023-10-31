@@ -2,6 +2,7 @@ import design.BaseButton;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class MainWindow extends JFrame {
     Gomoku game;
@@ -71,5 +72,26 @@ public class MainWindow extends JFrame {
     public void start() {
         GameWindow gameWindow = new GameWindow();
         gameWindow.setVisible(true);
+        gameWindow.addWindowListener(new GameWindowListener());
+    }
+
+    public void end() {
+        EndWindow endWindow = new EndWindow();
+        endWindow.setVisible(true);
+        endWindow.addWindowListener(new EndWindowListener());
+    }
+
+    class GameWindowListener extends WindowAdapter {
+        @Override
+        public void windowClosed(WindowEvent e) {
+            end();
+        }
+    }
+    class EndWindowListener extends WindowAdapter {
+        @Override
+        public void windowClosed(WindowEvent e) {
+            game.rematch();
+            start();
+        }
     }
 }
