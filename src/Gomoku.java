@@ -1,3 +1,6 @@
+import javax.swing.*;
+import java.io.*;
+
 public class Gomoku implements Cloneable {
     private static Gomoku instance;
     public String player1;
@@ -135,12 +138,17 @@ public class Gomoku implements Cloneable {
 
     }
 
-    /*public void Rematch() {
+    public boolean isEnded() {
+        return this.status == GameStatus.PLAYER1WIN || this.status == GameStatus.PLAYER2WIN || this.status == GameStatus.DRAW;
+    }
+
+    public void rematch() {
         String save = this.player1;
         this.player1 = this.player2;
         this.player2 = save;
-        this.grid = new int[rows][cols];
-    }*/
+        status = GameStatus.PLAYER1;
+        this.resetGrid();
+    }
     public Gomoku clone() {
         Gomoku g;
         try {
@@ -195,6 +203,43 @@ public class Gomoku implements Cloneable {
         }
         this.win = Integer.parseInt(w);
     }
+    public void save() {
+        JSONObject json = getJsonObject();
+
+        try{
+            File savesFolder = new File("saves");
+            if (!savesFolder.exists()) savesFolder.mkdir();
+
+            FileWriter fileWriter = new FileWriter("saves/"+player1+"_"+player2+"_"+rows+"_"+cols+"_"+System.currentTimeMillis()+".json");
+            fileWriter.write(json.toString());
+            fileWriter.close();
+            JOptionPane.showMessageDialog(null, "A mentés sikeres!");
+        } catch (IOException e) {
+            System.out.println("HIBA(IO): " + e.getMessage());
+        }
+    }
+
+    private JSONObject getJsonObject() {
+        JSONObject json = new JSONObject();
+        json.add("player1", player1);
+        json.add("player2", player2);
+        json.add("rows", rows);
+        json.add("cols", cols);
+        json.add("win", win);
+
+        // Hozzáadjuk a mátrixot a JSON objektumhoz
+        JSONArray gridArray = new JSONArray();
+        for (int i = 0; i < rows; i++) {
+            JSONArray rowArray = new JSONArray();
+            for (int j = 0; j < cols; j++) {
+                rowArray.add(grid[i][j].ordinal());
+            }
+            gridArray.add(rowArray);
+        }
+        json.add("grid", gridArray);
+        return json;
+    }
+
 
     @Override
     public String toString() {
