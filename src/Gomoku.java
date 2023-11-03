@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.io.*;
+import java.util.Arrays;
 
 public class Gomoku implements Cloneable {
     private static Gomoku instance;
@@ -12,7 +13,10 @@ public class Gomoku implements Cloneable {
     public GameStatus status;
 
     private Gomoku() {
-        this.Init("Aladár", "Béla", 3, 3, 3);
+        this.reset();
+    }
+    public void reset() {
+        this.Init("", "", 3, 3, 3);
     }
 
     public static Gomoku getInstance() {
@@ -149,6 +153,7 @@ public class Gomoku implements Cloneable {
         status = GameStatus.PLAYER1;
         this.resetGrid();
     }
+
     public Gomoku clone() {
         Gomoku g;
         try {
@@ -203,17 +208,44 @@ public class Gomoku implements Cloneable {
         }
         this.win = Integer.parseInt(w);
     }
+
     public void save() {
         JSONObject json = getJsonObject();
 
-        try{
+        try {
             File savesFolder = new File("saves");
             if (!savesFolder.exists()) savesFolder.mkdir();
 
-            FileWriter fileWriter = new FileWriter("saves/"+player1+"_"+player2+"_"+rows+"_"+cols+"_"+System.currentTimeMillis()+".json");
+            FileWriter fileWriter = new FileWriter("saves/" + player1 + "_" + player2 + "_" + rows + "_" + cols + "_" + System.currentTimeMillis() + ".json");
             fileWriter.write(json.toString());
             fileWriter.close();
             JOptionPane.showMessageDialog(null, "A mentés sikeres!");
+        } catch (IOException e) {
+            System.out.println("HIBA(IO): " + e.getMessage());
+        }
+    }
+
+    public void load(File file) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String jsons = br.readLine();
+            br.close();
+            JSONObject json = new JSONObject(jsons);
+            player1 = json.get("player1");
+            player2 = json.get("player2");
+            rows = Integer.parseInt(json.get("rows"));
+            cols = Integer.parseInt(json.get("cols"));
+            win = Integer.parseInt(json.get("win"));
+            status = GameStatus.values()[Integer.parseInt(json.get("status"))];
+            resetGrid();
+            JSONArray array = new JSONArray(json.get("grid"));
+            for (int i = 0; i < rows; i++) {
+                JSONArray subArray = new JSONArray(array.get(i));
+                for (int j = 0; j < cols; j++) {
+                    grid[i][j] = CellStatus.values()[Integer.parseInt(subArray.get(j))];
+                }
+            }
+
         } catch (IOException e) {
             System.out.println("HIBA(IO): " + e.getMessage());
         }
@@ -226,6 +258,7 @@ public class Gomoku implements Cloneable {
         json.add("rows", rows);
         json.add("cols", cols);
         json.add("win", win);
+        json.add("status", status.ordinal());
 
         // Hozzáadjuk a mátrixot a JSON objektumhoz
         JSONArray gridArray = new JSONArray();
@@ -240,9 +273,18 @@ public class Gomoku implements Cloneable {
         return json;
     }
 
+    public boolean equals(Gomoku g) {
+        boolean eq = this.player1.equals(g.player1);
+        eq = eq || this.player1.equals(g.player2);
+        eq = eq || this.cols == g.cols;
+        eq = eq || this.rows == g.rows;
+        eq = eq || this.win == g.win;
+        eq = eq || Arrays.deepEquals(this.grid, g.grid);
+        return eq;
+    }
 
     @Override
     public String toString() {
-        return "P1: " + this.player1 + "\nP2: " + this.player2 + "\nRows: " + this.rows + "\nCols: " + this.cols + "\nWin: " + this.win + "\n";
+        return "P1: " + this.player1 + "\nP2: " + this.player2 + "\nRows: " + this.rows + "\nCols: " + this.cols + "\nWin: " + this.win + "\nStatus:" + this.status + "\n";
     }
 }

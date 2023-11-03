@@ -60,11 +60,11 @@ public class GameWindow extends JFrame {
                 allapot.setText(game.player2 + " nyert");
                 break;
         }
-        BaseButton exit = new BaseButton("Kilépés", Color.RED, Color.DARK_GRAY);
+        BaseButton exit = new BaseButton("Menü", Color.RED, Color.DARK_GRAY);
         save.setPreferredSize(new Dimension(300, 100));
         save.addActionListener(e -> save());
         exit.setPreferredSize(new Dimension(300, 100));
-        exit.addActionListener(e -> System.exit(0)); //TODO exit or back to main menu
+        exit.addActionListener(e -> backToMenu());
         up.add(save, BorderLayout.WEST);
         up.add(allapot, BorderLayout.CENTER);
         up.add(exit, BorderLayout.EAST);
@@ -104,6 +104,12 @@ public class GameWindow extends JFrame {
             }
         }
         add(center, BorderLayout.CENTER);
+    }
+    private void backToMenu() {
+        int res = JOptionPane.showConfirmDialog(null, "Kilépve a játék nem folytatható! Így is kilépsz?", "Megerősítés", JOptionPane.YES_NO_OPTION);
+        if (res == JOptionPane.YES_OPTION) {
+            dispose();
+        }
     }
 
     private void step(ActionEvent e, int i, int j) {
