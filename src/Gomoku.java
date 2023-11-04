@@ -15,8 +15,9 @@ public class Gomoku implements Cloneable {
     private Gomoku() {
         this.reset();
     }
+
     public void reset() {
-        this.Init("", "", 3, 3, 3);
+        this.Init("g", "l", 3, 3, 3);
     }
 
     public static Gomoku getInstance() {
@@ -271,16 +272,6 @@ public class Gomoku implements Cloneable {
         }
         json.add("grid", gridArray);
         return json;
-    }
-
-    public boolean equals(Gomoku g) {
-        boolean eq = this.player1.equals(g.player1);
-        eq = eq || this.player1.equals(g.player2);
-        eq = eq || this.cols == g.cols;
-        eq = eq || this.rows == g.rows;
-        eq = eq || this.win == g.win;
-        eq = eq || Arrays.deepEquals(this.grid, g.grid);
-        return eq;
     }
 
     @Override

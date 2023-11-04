@@ -72,10 +72,16 @@ public class GameWindow extends JFrame {
     }
 
     private void genCenter() {
+        JScrollPane scrollPane = new JScrollPane();
+        //TODO Scrollable!
+        scrollPane.setViewportView(center);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         center = new JPanel(new GridLayout(game.rows, game.cols, 0, 0));
         for (int i = 0; i < game.rows; i++) {
             for (int j = 0; j < game.cols; j++) {
                 JButton addBtn = new BaseButton("", Color.WHITE, Color.DARK_GRAY);
+                addBtn.setSize(new Dimension(5000,5000));
                 int finalI = i;
                 int finalJ = j;
                 addBtn.addActionListener(e -> this.step(e, finalI, finalJ));
