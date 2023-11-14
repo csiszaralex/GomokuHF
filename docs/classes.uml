@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="-1897.5" y="1182.0">EndWindow</node>
+    <node x="-1627.5" y="202.0">Gomoku</node>
+    <node x="-1931.5" y="-118.0">JSONObject</node>
+    <node x="-1438.5" y="-118.0">GameStatus</node>
+    <node x="-1387.0" y="1171.0">InitWindow</node>
+    <node x="-1414.0" y="1815.0">Main</node>
+    <node x="-2169.0" y="1122.0">LoadWindow</node>
+    <node x="-1923.0" y="516.0">design.BaseButton</node>
+    <node x="-1679.5" y="1098.0">GameWindow</node>
+    <node x="-1438.5" y="1482.0">MainWindow</node>
+    <node x="-1698.5" y="-93.0">CellStatus</node>
+    <node x="-2130.5" y="-118.0">JSONArray</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Main" target="MainWindow" relationship="CREATE">
+      <point x="0.0" y="-44.0" />
+      <point x="0.0" y="117.0" />
+    </edge>
+    <edge source="EndWindow" target="Gomoku" relationship="TO_ONE">
+      <point x="40.0" y="-57.0" />
+      <point x="-1765.0" y="1039.0" />
+      <point x="-1225.0" y="1039.0" />
+      <point x="-1225.0" y="939.0" />
+      <point x="-1465.0" y="939.0" />
+      <point x="0.0" y="357.0" />
+    </edge>
+    <edge source="Gomoku" target="JSONArray" relationship="CREATE">
+      <point x="-81.66666666666663" y="-357.0" />
+      <point x="-1546.6666666666665" y="179.0" />
+      <point x="-1825.0" y="179.0" />
+      <point x="-1825.0" y="139.0" />
+      <point x="-2045.0" y="139.0" />
+      <point x="0.0" y="117.0" />
+    </edge>
+    <edge source="MainWindow" target="InitWindow" relationship="CREATE">
+      <point x="-56.75" y="-117.0" />
+      <point x="-1381.75" y="1459.0" />
+      <point x="-1805.0" y="1459.0" />
+      <point x="-1805.0" y="1419.0" />
+      <point x="-1305.0" y="1419.0" />
+      <point x="0.0" y="68.0" />
+    </edge>
+    <edge source="InitWindow" target="design.BaseButton" relationship="CREATE">
+      <point x="-40.0" y="-68.0" />
+      <point x="-1345.0" y="1059.0" />
+      <point x="-1845.0" y="1059.0" />
+      <point x="-60.0" y="43.0" />
+    </edge>
+    <edge source="MainWindow" target="GameWindow" relationship="CREATE">
+      <point x="-56.75" y="-117.0" />
+      <point x="-1381.75" y="1459.0" />
+      <point x="-1805.0" y="1459.0" />
+      <point x="-1805.0" y="1419.0" />
+      <point x="-1545.0" y="1419.0" />
+      <point x="0.0" y="141.0" />
+    </edge>
+    <edge source="MainWindow" target="Gomoku" relationship="TO_ONE">
+      <point x="56.75" y="-117.0" />
+      <point x="-1268.25" y="1459.0" />
+      <point x="-1205.0" y="1459.0" />
+      <point x="-1205.0" y="1039.0" />
+      <point x="-1225.0" y="1039.0" />
+      <point x="-1225.0" y="939.0" />
+      <point x="-1465.0" y="939.0" />
+      <point x="0.0" y="357.0" />
+    </edge>
+    <edge source="MainWindow" target="design.BaseButton" relationship="TO_ONE">
+      <point x="56.75" y="-117.0" />
+      <point x="-1268.25" y="1459.0" />
+      <point x="-1205.0" y="1459.0" />
+      <point x="-1205.0" y="1439.0" />
+      <point x="-1165.0" y="1439.0" />
+      <point x="-1165.0" y="1219.0" />
+      <point x="-1185.0" y="1219.0" />
+      <point x="-1185.0" y="959.0" />
+      <point x="-1713.0" y="959.0" />
+      <point x="72.0" y="43.0" />
+    </edge>
+    <edge source="Gomoku" target="CellStatus" relationship="TO_MANY">
+      <point x="80.0" y="-357.0" />
+      <point x="-1385.0" y="139.0" />
+      <point x="-1529.3333333333335" y="139.0" />
+      <point x="55.66666666666663" y="92.0" />
+    </edge>
+    <edge source="GameWindow" target="design.BaseButton" relationship="CREATE">
+      <point x="-60.0" y="-141.0" />
+      <point x="-1605.0" y="1059.0" />
+      <point x="-1845.0" y="1059.0" />
+      <point x="-60.0" y="43.0" />
+    </edge>
+    <edge source="Gomoku" target="GameStatus" relationship="TO_ONE">
+      <point x="80.0" y="-357.0" />
+      <point x="-1385.0" y="139.0" />
+      <point x="-1325.0" y="139.0" />
+      <point x="0.0" y="117.0" />
+    </edge>
+    <edge source="Gomoku" target="JSONObject" relationship="CREATE">
+      <point x="-81.66666666666663" y="-357.0" />
+      <point x="-1546.6666666666665" y="179.0" />
+      <point x="-1825.0" y="179.0" />
+      <point x="0.0" y="117.0" />
+    </edge>
+    <edge source="MainWindow" target="design.BaseButton" relationship="CREATE">
+      <point x="-56.75" y="-117.0" />
+      <point x="-1381.75" y="1459.0" />
+      <point x="-1805.0" y="1459.0" />
+      <point x="-1805.0" y="1419.0" />
+      <point x="-2185.0" y="1419.0" />
+      <point x="-2185.0" y="1059.0" />
+      <point x="-1845.0" y="1059.0" />
+      <point x="-60.0" y="43.0" />
+    </edge>
+    <edge source="MainWindow" target="LoadWindow" relationship="CREATE">
+      <point x="-56.75" y="-117.0" />
+      <point x="-1381.75" y="1459.0" />
+      <point x="-1805.0" y="1459.0" />
+      <point x="-1805.0" y="1419.0" />
+      <point x="-2045.0" y="1419.0" />
+      <point x="0.0" y="117.0" />
+    </edge>
+    <edge source="MainWindow" target="EndWindow" relationship="CREATE">
+      <point x="-56.75" y="-117.0" />
+      <point x="-1381.75" y="1459.0" />
+      <point x="-1805.0" y="1459.0" />
+      <point x="0.0" y="57.0" />
+    </edge>
+    <edge source="InitWindow" target="Gomoku" relationship="TO_ONE">
+      <point x="40.0" y="-68.0" />
+      <point x="-1265.0" y="979.0" />
+      <point x="-1225.0" y="979.0" />
+      <point x="-1225.0" y="939.0" />
+      <point x="-1465.0" y="939.0" />
+      <point x="0.0" y="357.0" />
+    </edge>
+    <edge source="EndWindow" target="design.BaseButton" relationship="CREATE">
+      <point x="-40.0" y="-57.0" />
+      <point x="-60.0" y="43.0" />
+    </edge>
+    <edge source="LoadWindow" target="design.BaseButton" relationship="CREATE">
+      <point x="0.0" y="-117.0" />
+      <point x="-2045.0" y="1059.0" />
+      <point x="-1845.0" y="1059.0" />
+      <point x="-60.0" y="43.0" />
+    </edge>
+    <edge source="GameWindow" target="Gomoku" relationship="TO_ONE">
+      <point x="60.0" y="-141.0" />
+      <point x="-1485.0" y="1039.0" />
+      <point x="-1225.0" y="1039.0" />
+      <point x="-1225.0" y="939.0" />
+      <point x="-1465.0" y="939.0" />
+      <point x="0.0" y="357.0" />
+    </edge>
+    <edge source="Gomoku" target="CellStatus" relationship="CREATE">
+      <point x="-81.66666666666663" y="-357.0" />
+      <point x="-1546.6666666666665" y="179.0" />
+      <point x="-1825.0" y="179.0" />
+      <point x="-1825.0" y="139.0" />
+      <point x="-1645.0" y="139.0" />
+      <point x="-60.0" y="92.0" />
+    </edge>
+    <edge source="InitWindow" target="design.BaseButton" relationship="TO_ONE">
+      <point x="40.0" y="-68.0" />
+      <point x="-1265.0" y="1019.0" />
+      <point x="-1185.0" y="1019.0" />
+      <point x="-1185.0" y="959.0" />
+      <point x="-1713.0" y="959.0" />
+      <point x="72.0" y="43.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.3165115139637433" showDependencies="true" x="-1665.0000000000005" y="902.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
